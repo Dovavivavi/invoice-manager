@@ -1,31 +1,32 @@
+import React from 'react'
 import { signOut } from 'firebase/auth'
-import React, { Component } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { auth } from '../../firebase-config'
 import './MainMenu.scss'
 
+function MainMenu() {
+  const navigate = useNavigate()
 
-export class MainMenu extends Component {
-  render() {
-    const logout = async () => {
-      try {
-        await signOut(auth)
-        console.log('succesful signout')
-      } catch(error) {
-        console.log(error.message)
-      } 
+  const logout = async () => {
+    try {
+      await signOut(auth)
+      console.log('succesful signout!')
+      navigate('/')
+    } catch(error) {
+      console.log(error.message)
     }
-
-    return (
-      <>
-        <div>main menu header
-          <p>list</p>
-          <p>create bill</p>
-          <button onClick={logout}>kijelentkezés</button>
-        </div>
-        <div>Main menu is here</div>
-      </>
-    )
   }
+
+  return (
+    <>
+      <div>MainMenu Header</div>
+      <div>
+        <p>list</p>
+        <p>create bills</p>
+        <button onClick={logout}>Kijelentkezés</button>
+      </div>
+    </>
+  )
 }
 
 export default MainMenu
