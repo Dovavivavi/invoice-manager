@@ -9,11 +9,12 @@ function Registration() {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
 
-  const register = async () => {
+  const register = async (e) => {
+    e.preventDefault();
     try {
-      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-      console.log(`${user} is created`)
-    } catch (error) {
+      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+      console.log(user)
+    } catch(error) {
       console.log(error.message)
     }
   };
@@ -24,9 +25,9 @@ function Registration() {
       <div className='form-container'>
         <form className='input-container'>
           <input type='text' placeholder='Név' />
-          <input type='text' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
+          <input type='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
           <input type='password' placeholder='Jelszó' onChange={(event) => {setRegisterPassword(event.target.value)}}/>
-          <button onClick={() => register}>Regisztráció</button>
+          <button onClick={register}>Regisztráció</button>
         </form>
       </div>
       <div>
