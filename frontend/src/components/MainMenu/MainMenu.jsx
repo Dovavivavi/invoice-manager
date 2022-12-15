@@ -4,7 +4,13 @@ import './MainMenu.scss'
 export class MainMenu extends Component {
   render() {
     return (
-      <div>Main menu is here</div>
+      <>
+        <div>main menu header
+          <p>list</p>
+          <p>create bill</p>
+        </div>
+        <div>Main menu is here</div>
+      </>
     )
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import LoginHeader from '../LoginHeader/LoginHeader'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
@@ -27,18 +28,21 @@ function LoginForm() {
   }
 
   return (
-    <div id='login-section'>
-      <h1>Bejelentkezés</h1>
-      <p>jelenlegi felhasználó: {user.email}</p>
-      <div className='login-container'>
-        <input type='text' placeholder='Felhasználónév' onChange={(event) => {setLoginEmail(event.target.value)}}/>
-        <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
-        <button onClick={login}>Bejelentkezés</button>
+    <>
+      <LoginHeader />
+      <div id='login-section'>
+        <h1>Bejelentkezés</h1>
+        <p>jelenlegi felhasználó: {user.email}</p>
+        <div className='login-container'>
+          <input type='text' placeholder='Felhasználónév' onChange={(event) => {setLoginEmail(event.target.value)}}/>
+          <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
+          <button onClick={login}>Bejelentkezés</button>
+        </div>
+        <div>
+          <Link to='/registration'>Regisztráció</Link>
+        </div>
       </div>
-      <div>
-        <Link to='/registration'>Regisztráció</Link>
-      </div>
-    </div>
+    </>
   )
 }
 

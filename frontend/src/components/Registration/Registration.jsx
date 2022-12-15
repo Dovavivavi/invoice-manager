@@ -1,4 +1,5 @@
 import React from 'react'
+import LoginHeader from '../LoginHeader/LoginHeader'
 import './Registration.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
@@ -22,20 +23,23 @@ function Registration() {
   };
 
   return (
-    <div id='form-section'>
-      <h1>Regisztráció</h1>
-      <div className='form-container'>
-        <form className='input-container'>
-          <input type='text' placeholder='Név' />
-          <input type='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
-          <input type='password' placeholder='Jelszó' onChange={(event) => {setRegisterPassword(event.target.value)}}/>
-          <button onClick={register}>Regisztráció</button>
-        </form>
+    <>
+      <LoginHeader />
+      <div id='form-section'>
+        <h1>Regisztráció</h1>
+        <div className='form-container'>
+          <form className='input-container'>
+            <input type='text' placeholder='Név' />
+            <input type='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
+            <input type='password' placeholder='Jelszó' onChange={(event) => {setRegisterPassword(event.target.value)}}/>
+            <button onClick={register}>Regisztráció</button>
+          </form>
+        </div>
+        <div>
+          <Link to='/'>vissza</Link>
+        </div>
       </div>
-      <div>
-        <Link to='/'>vissza</Link>
-      </div>
-    </div>
+    </>
   )
 }
 
