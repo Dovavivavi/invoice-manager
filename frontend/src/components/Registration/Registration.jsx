@@ -1,5 +1,6 @@
 import React from 'react'
 import './Registration.scss'
+import { Link } from 'react-router-dom'
 
 function Registration() {
   return (
@@ -12,6 +13,9 @@ function Registration() {
           <input type='password' placeholder='Jelszó' />
           <button>Regisztráció</button>
         </form>
+      </div>
+      <div>
+        <Link to='/'>vissza</Link>
       </div>
     </div>
   )
