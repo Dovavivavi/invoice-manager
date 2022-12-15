@@ -16,7 +16,7 @@ function LoginForm() {
   // onAuthStateChanged(auth, (currentUser) => {
   //   setUser(currentUser)
   // })
-
+  let errCount = 0
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -24,6 +24,10 @@ function LoginForm() {
       navigate('/menu')
     } catch (error) {
       console.log(error.message)
+      errCount++;
+      if(errCount === 3) {
+        console.log("captcha will be here")
+      }
     }
   }
 
