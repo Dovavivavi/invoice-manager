@@ -1,6 +1,6 @@
 import React from 'react'
 import './Registration.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase-config'
@@ -8,12 +8,14 @@ import { auth } from '../../firebase-config'
 function Registration() {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
+  const navigate = useNavigate();
 
   const register = async (e) => {
     e.preventDefault();
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       console.log(user)
+      navigate('/menu')
     } catch(error) {
       console.log(error.message)
     }
