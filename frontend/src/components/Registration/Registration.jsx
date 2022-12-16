@@ -25,8 +25,6 @@ function Registration() {
 
       //adds user based on email to collection
       await setDoc(doc(db, 'users', `${registerEmail}`), {})
-
-      //sends data to mainmenu component
       
     } catch(error) {
       console.log(error.message)
