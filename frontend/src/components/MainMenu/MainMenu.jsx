@@ -5,8 +5,7 @@ import { auth } from '../../firebase-config'
 import { useContext } from 'react'
 import './MainMenu.scss'
 import { UserContext } from '../../Contexts'
-import { authedUser } from '../../firebase-config'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
@@ -34,7 +33,7 @@ function MainMenu() {
   const time = current.toLocaleTimeString('hu-HU')
 
 //--user data--
-  React.useEffect(() => {
+  useEffect(() => {
     // const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
