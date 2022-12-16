@@ -31,11 +31,13 @@ function LoginForm() {
       console.log(error.message)
       errCount++;
       if(errCount === 3) {
+        recaptchaRef.current.execute();
         console.log("captcha will be here")
       }
     }
   }
 // captcha
+  const recaptchaRef = React.createRef();
   const onChange = () => {}
 
   return (
@@ -49,7 +51,7 @@ function LoginForm() {
           <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
           <button onClick={login}>Bejelentkezés</button>
         </div>
-        <ReCAPTCHA sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE'/>
+        <ReCAPTCHA ref={recaptchaRef} size='invisible' sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' onChange={onChange} />
         <div>
           <Link to='/registration'>Regisztráció</Link>
         </div>
