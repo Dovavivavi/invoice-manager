@@ -6,5 +6,5 @@ function LoginFooter() {
     <div>LoginFooter</div>
   )
 }
-
+//will add fictional data
 export default LoginFooter

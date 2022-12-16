@@ -11,6 +11,7 @@ function Registration() {
   const [registerPassword, setRegisterPassword] = useState('');
   const navigate = useNavigate();
 
+//--registration method, then redirects the user--
   const register = async (e) => {
     e.preventDefault();
     try {

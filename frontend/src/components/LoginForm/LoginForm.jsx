@@ -16,6 +16,9 @@ function LoginForm() {
   // onAuthStateChanged(auth, (currentUser) => {
   //   setUser(currentUser)
   // })
+
+//--sign in method, counts errors and fires captcha--
+
   let errCount = 0
   const login = async () => {
     try {

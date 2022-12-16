@@ -12,4 +12,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 
+//auth variable for the components
 export const auth = getAuth(app)
