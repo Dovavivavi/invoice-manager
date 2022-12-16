@@ -6,8 +6,13 @@ import { useContext } from 'react'
 import './MainMenu.scss'
 import { UserContext } from '../../Contexts'
 import { authedUser } from '../../firebase-config'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
-function MainMenu() {
+function MainMenu() { 
+  const [currUser, setCurrUser] = useState([])
+
 // context test
   const msg = useContext(UserContext)
 
@@ -29,6 +34,23 @@ function MainMenu() {
   const time = current.toLocaleTimeString('hu-HU')
 
 //--user data--
+  React.useEffect(() => {
+    // const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in: puts the neccesary data into an array
+        let dataArr = []
+        dataArr.push(user.displayName, user.email, user.metadata.lastSignInTime)
+        setCurrUser(dataArr)
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+  }, [])
+ 
+  currUser && console.log(currUser[0])
 
   return (
     <>
@@ -40,6 +62,10 @@ function MainMenu() {
         <button onClick={logout}>Kijelentkezés</button>
       </div>
       <div>
+        <h1>{"bejelentkezett felhasználó: " + currUser[0]}</h1>
+        <p>{"email: " + currUser[1]}</p>
+        <p>{time}</p>
+        <p>{"Utolsó bejelentkezés: " + currUser[2]}</p>
         <h1>{msg}</h1>
       </div>
     </>

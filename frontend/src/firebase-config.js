@@ -37,7 +37,3 @@ getDocs(colRef)
 
 //auth variable for the components
 export const auth = getAuth(app)
-
-// export const authedUser = auth.onAuthStateChanged((user) => {
-//   return user.displayName
-// })
