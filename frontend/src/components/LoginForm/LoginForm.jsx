@@ -23,6 +23,7 @@ function LoginForm() {
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      console.log(user)
       console.log('successful signin!')
       navigate('/menu')
     } catch (error) {
