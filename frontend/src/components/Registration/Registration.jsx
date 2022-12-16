@@ -15,7 +15,7 @@ function Registration() {
     e.preventDefault();
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      console.log(user)
+      console.log('a new user has been created!')
       navigate('/menu')
     } catch(error) {
       console.log(error.message)

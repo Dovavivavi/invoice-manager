@@ -7,7 +7,7 @@ function CreateBills() {
     <div id='createbills-section'>
       <h1>Új számla:</h1>
       <div className='creatbills-form-container'>
-        <from>
+        <form>
           <input type='text' placeholder='Vásárló neve'/>
           <input type='date' placeholder='Kiállítás dátuma'/>
           <input type='date' placeholder='Esedékesség dátuma'/>
@@ -15,9 +15,9 @@ function CreateBills() {
           <input type='text' placeholder='Megjegyzés'/>
           <input type='number' placeholder='Ár'/>
           <button>Mentés</button>
-        </from>
+        </form>
         <div>
-          <Link to='/'>vissza</Link>
+          <Link to='/menu'>vissza</Link>
         </div>
       </div>
     </div>
