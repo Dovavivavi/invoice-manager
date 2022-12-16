@@ -1,5 +1,6 @@
 import React from 'react'
 import LoginHeader from '../LoginHeader/LoginHeader'
+import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
@@ -34,6 +35,8 @@ function LoginForm() {
       }
     }
   }
+// captcha
+  const onChange = () => {}
 
   return (
     <>
@@ -46,6 +49,7 @@ function LoginForm() {
           <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
           <button onClick={login}>Bejelentkezés</button>
         </div>
+        <ReCAPTCHA sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE'/>
         <div>
           <Link to='/registration'>Regisztráció</Link>
         </div>
