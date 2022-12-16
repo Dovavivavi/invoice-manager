@@ -2,10 +2,14 @@ import React from 'react'
 import { signOut } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../../firebase-config'
-import { onAuthStateChanged } from 'firebase/auth' 
+import { useContext } from 'react'
 import './MainMenu.scss'
+import { UserContext } from '../../Contexts'
+import { authedUser } from '../../firebase-config'
 
 function MainMenu() {
+// context test
+  const msg = useContext(UserContext)
 
 //--logout method--
   const navigate = useNavigate()
@@ -25,15 +29,6 @@ function MainMenu() {
   const time = current.toLocaleTimeString('hu-HU')
 
 //--user data--
-  // auth.onAuthStateChanged((user) => {
-  //   if(user) {
-  //     console.log(user)
-  //   } else {
-  //     console.log('no user')
-  //   }
-  // })
-
-  auth && console.log(auth.currentUser)
 
   return (
     <>
@@ -45,12 +40,7 @@ function MainMenu() {
         <button onClick={logout}>Kijelentkezés</button>
       </div>
       <div>
-        <h1>adatok:</h1>
-        <p>dipsnév</p>
-        <p>felhasználónév</p>
-        <p>jelszó</p>
-        <p>{time}</p>
-        <p>utolsó belépés dátuma</p>
+        <h1>{msg}</h1>
       </div>
     </>
   )

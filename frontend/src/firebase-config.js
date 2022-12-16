@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, getDocs, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -19,6 +19,9 @@ export const db = getFirestore()
 //collection ref
 export const colRef = collection(db, 'users')
 
+//doc ref
+// export const docRef = doc(db, 'users', `${}`)
+
 //collection data
 getDocs(colRef)
   .then((snap) => {
@@ -34,3 +37,7 @@ getDocs(colRef)
 
 //auth variable for the components
 export const auth = getAuth(app)
+
+// export const authedUser = auth.onAuthStateChanged((user) => {
+//   return user.displayName
+// })
