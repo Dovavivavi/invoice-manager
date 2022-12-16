@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -11,6 +12,25 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig)
+
+//init
+export const db = getFirestore()
+
+//collection ref
+export const colRef = collection(db, 'users')
+
+//collection data
+getDocs(colRef)
+  .then((snap) => {
+    let users = []
+    snap.docs.forEach((doc) => {
+      users.push({ ...doc.data(), id: doc.id })
+    })
+    console.log(users)
+  })
+  .catch(err => {
+    console.log(err.message)
+  })
 
 //auth variable for the components
 export const auth = getAuth(app)

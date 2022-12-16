@@ -5,6 +5,8 @@ import { auth } from '../../firebase-config'
 import './MainMenu.scss'
 
 function MainMenu() {
+
+//--logout method--
   const navigate = useNavigate()
 
   const logout = async () => {
@@ -16,6 +18,10 @@ function MainMenu() {
       console.log(error.message)
     }
   }
+
+//--gettime method--
+  const current = new Date();
+  const time = current.toLocaleTimeString('hu-HU')
 
   return (
     <>
@@ -31,7 +37,7 @@ function MainMenu() {
         <p>név</p>
         <p>felhasználónév</p>
         <p>jelszó</p>
-        <p>pontos idő</p>
+        <p>{time}</p>
         <p>utolsó belépés dátuma</p>
       </div>
     </>

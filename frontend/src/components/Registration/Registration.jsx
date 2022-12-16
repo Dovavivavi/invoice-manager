@@ -4,7 +4,8 @@ import './Registration.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase-config'
+import { auth, db } from '../../firebase-config'
+import { doc, setDoc } from 'firebase/firestore'
 
 function Registration() {
   const [registerEmail, setRegisterEmail] = useState('');
@@ -18,6 +19,10 @@ function Registration() {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       console.log('a new user has been created!')
       navigate('/menu')
+
+      //adds user based on email to collection
+      await setDoc(doc(db, 'users', `${registerEmail}`), {})
+
     } catch(error) {
       console.log(error.message)
     }
@@ -31,7 +36,7 @@ function Registration() {
         <div className='form-container'>
           <form className='input-container'>
             <input type='text' placeholder='Név' />
-            <input type='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
+            <input type='email' id='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
             <input type='password' placeholder='Jelszó' onChange={(event) => {setRegisterPassword(event.target.value)}}/>
             <button onClick={register}>Regisztráció</button>
           </form>
