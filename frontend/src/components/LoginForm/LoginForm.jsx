@@ -49,7 +49,7 @@ function LoginForm() {
         <div className='login-container'>
           <input type='text' placeholder='Felhasználónév' onChange={(event) => {setLoginEmail(event.target.value)}}/>
           <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
-          <button onClick={login}>Bejelentkezés</button>
+          <button disabled={!loginEmail + !loginPassword} onClick={login}>Bejelentkezés</button>
         </div>
         <ReCAPTCHA ref={recaptchaRef} size='invisible' sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' onChange={onChange} />
         <div>

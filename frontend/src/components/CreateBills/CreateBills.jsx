@@ -5,6 +5,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
 function CreateBills() {
+
   const save = async (e) => {
     e.preventDefault();
     try {
@@ -21,7 +22,7 @@ function CreateBills() {
       <h1>Új számla:</h1>
       <div className='creatbills-form-container'>
         <form>
-          <input type='text' placeholder='Vásárló neve'/>
+          <input type='text' placeholder='Vásárló neve' />
           <input type='date' placeholder='Kiállítás dátuma'/>
           <input type='date' placeholder='Esedékesség dátuma'/>
           <input type='text' placeholder='Tétel neve'/>

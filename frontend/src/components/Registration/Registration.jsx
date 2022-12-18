@@ -13,6 +13,8 @@ function Registration() {
   const [dispName, setDispName] = useState('');
   const navigate = useNavigate();
 
+  console.log(registerEmail)
+
 //--registration method, then redirects the user--
   const register = async (e) => {
     e.preventDefault();
@@ -31,6 +33,8 @@ function Registration() {
     }
   };
 
+
+
   return (
     <>
       <LoginHeader />
@@ -41,7 +45,7 @@ function Registration() {
             <input type='text' placeholder='Név' onChange={(event) => {setDispName(event.target.value)}}/>
             <input type='email' id='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
             <input type='password' placeholder='Jelszó' onChange={(event) => {setRegisterPassword(event.target.value)}}/>
-            <button onClick={register}>Regisztráció</button>
+            <button disabled={!registerEmail + !registerPassword + !dispName} onClick={register}>Regisztráció</button>
           </form>
         </div>
         <div>
