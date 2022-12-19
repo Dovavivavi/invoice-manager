@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import './LoginForm.scss'
 
 function LoginForm() {
+  const recaptchaRef = React.useRef(null);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [user, setUser] = useState({});
@@ -31,14 +32,20 @@ function LoginForm() {
       console.log(error.message)
       errCount++;
       if(errCount === 3) {
-        recaptchaRef.current.execute();
         console.log("captcha will be here")
+        captchaRender()
       }
     }
   }
 // captcha
-  const recaptchaRef = React.createRef();
-  const onChange = () => {}
+  const captchaRender = () => {
+    // recaptchaRef.current.execute()
+  }
+
+  const onChange = () => {
+    console.log("captcha done")
+    navigate('/')
+  }
 
   return (
     <>
@@ -49,9 +56,9 @@ function LoginForm() {
         <div className='login-container'>
           <input type='text' placeholder='Felhasználónév' onChange={(event) => {setLoginEmail(event.target.value)}}/>
           <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
+          <ReCAPTCHA ref={recaptchaRef} size='normal' sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' onChange={onChange} />
           <button disabled={!loginEmail + !loginPassword} onClick={login}>Bejelentkezés</button>
         </div>
-        <ReCAPTCHA ref={recaptchaRef} size='invisible' sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' onChange={onChange} />
         <div>
           <Link to='/registration'>Regisztráció</Link>
         </div>
