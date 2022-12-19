@@ -33,19 +33,22 @@ function CreateBills() {
 // saving data
   const save = async (e) => {
     e.preventDefault();
-    // billref had to wait for state update
+  // billref had to wait for state update
     const billRef = doc(db, 'users', `${currUser}`)
+  //computed array, to provide different property value
+    let billProp = name
+    var obj = [
+      consumerName,
+      name,
+      issueDate,
+      dueDate,
+      price,
+      comment
+    ]
     try {
       console.log('done')
       setDoc(billRef, {
-        name: [
-          consumerName,
-          issueDate,
-          dueDate,
-          name,
-          price,
-          comment
-        ]
+        [billProp]: obj
       }, { merge: true })
     } catch(error) {
       console.log(error.message)

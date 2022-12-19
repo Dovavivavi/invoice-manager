@@ -48,7 +48,6 @@ function MainMenu() {
       }
     });
   }, [])
- 
   currUser && console.log(currUser[0])
 
   return (
