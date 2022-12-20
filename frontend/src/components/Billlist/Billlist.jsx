@@ -56,10 +56,10 @@ function Billlist() {
         <Link to='/create'>Új számla</Link>
         <Link to='/menu'>vissza</Link>
       </div>
+      <button onClick={fetchData}>{button}</button>
       <div>
         {billData && propNames.map((billData, index) => (<BillDisplay key={index} billData={billData} />))}
       </div>
-      <button onClick={fetchData}>{button}</button>
     </div>
   );
 };

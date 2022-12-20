@@ -40,18 +40,18 @@ function Registration() {
       <div id='form-section'>
         <h1>Regisztráció</h1>
         <div className='form-container'>
-          <form className='input-container'>
+          <form className='registration-form'>
             <input type='text' placeholder='Név' onChange={(event) => {setDispName(event.target.value)}}/>
             <p>{dispNameErr}</p>
             <input type='email' id='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
             <p>{emailErr}</p>
             <input type='password' placeholder='Jelszó' onChange={(event) => {setRegisterPassword(event.target.value)}}/>
             <p></p>
-            <button disabled={!registerEmail + !registerPassword + !dispName} onClick={register}>Regisztráció</button>
+            <button className='register-button' disabled={!registerEmail + !registerPassword + !dispName} onClick={register}>Regisztráció</button>
           </form>
         </div>
         <div>
-          <Link to='/'>vissza</Link>
+          <Link className='backlink' to='/'>vissza</Link>
         </div>
       </div>
     </>

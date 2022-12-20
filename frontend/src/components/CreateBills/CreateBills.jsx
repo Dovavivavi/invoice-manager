@@ -91,7 +91,7 @@ function CreateBills() {
           <input type='date' placeholder='Esedékesség dátuma' onChange={(event) => {setDueDate(event.target.value)}}/>
           <input type='number' placeholder='Ár' onChange={(event) => {setPrice(event.target.value)}} />
           <input className='comment' type='text' placeholder='Megjegyzés (opcionális)' onChange={(event) => {setComment(event.target.value)}} />
-          <p  className='error-field'>{err} lorem ipsum</p>
+          <p  className='error-field'>{err}</p>
           <button className='save-button' onClick={save}>Mentés</button>
         </form>
       </div>
