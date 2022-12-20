@@ -1,7 +1,7 @@
 import React from 'react'
 import './CreateBills.scss'
 import { Link } from 'react-router-dom'
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 import { auth } from '../../firebase-config';
 import { useEffect, useState } from 'react';
@@ -16,6 +16,7 @@ function CreateBills() {
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [comment, setComment] = useState('')
+  const [err, setErr] = useState('')
 
 //user
   useEffect(() => {
@@ -54,14 +55,29 @@ function CreateBills() {
       price,
       comment
     ]
-    try {
-      console.log('done')
-      setDoc(billRef, {
-        [billProp]: response
-      }, { merge: true })
-    } catch(error) {
-      console.log(error.message)
+
+    if (consumerName !== '' && name !== '' && issueDate != null && dueDate != null && price !== '') {
+      try {
+        console.log('done')
+        setErr('sikeres számlalétrehozás')
+        setDoc(billRef, {
+          [billProp]: response
+        }, { merge: true })
+      } catch(error) {
+        console.log(error.message)
+      }
+    } else {
+      setErr('töltsd ki az összes mezőt!')
     }
+
+    // try {
+    //   console.log('done')
+    //   setDoc(billRef, {
+    //     [billProp]: response
+    //   }, { merge: true })
+    // } catch(error) {
+    //   console.log(error.message)
+    // }
   }
 
   return (
@@ -75,6 +91,8 @@ function CreateBills() {
           <input type='date' placeholder='Esedékesség dátuma' onChange={(event) => {setDueDate(event.target.value)}}/>
           <input type='number' placeholder='Ár' onChange={(event) => {setPrice(event.target.value)}} />
           <input type='text' placeholder='Megjegyzés' onChange={(event) => {setComment(event.target.value)}} />
+          <p>{err}</p>
+          <p></p>
           <button onClick={save}>Mentés</button>
         </form>
         <div>

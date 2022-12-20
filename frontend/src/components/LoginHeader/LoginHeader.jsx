@@ -3,7 +3,10 @@ import './LoginHeader.scss'
 
 function LoginHeader() {
   return (
-    <div>LoginHeader</div>
+    <div className='header-container'>
+      <h1>számlakezelő oldal</h1>
+      <p>lorem ipsum</p>
+    </div>
   )
 }
 

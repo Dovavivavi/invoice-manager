@@ -52,8 +52,7 @@ function MainMenu() {
 
   return (
     <>
-      <div>MainMenu Header</div>
-      <div>
+      <div className='mainheader-container'>
         <Link to='/create'>Új számla</Link>
         <Link to='/list'>Összes számla</Link>
         <Link to='/check'>Számla megtekintése</Link>

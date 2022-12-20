@@ -9,6 +9,7 @@ import { auth, db } from '../../firebase-config';
 function Billlist() {
   const [currUser, setCurrUser] = useState('')
   const [billData, setBillData] = useState(null)
+  const [button, setButton] = useState('mutasd')
 
 //test
 
@@ -31,8 +32,14 @@ function Billlist() {
 
     if(docSnap.exists()) {
       setBillData(docSnap.data())
+      setButton('vissza')
     } else {
       console.log('no such document!')
+    }
+
+    if(billData !== null) {
+      setBillData(null)
+      setButton('mutasd')
     }
   }
   
@@ -52,7 +59,7 @@ function Billlist() {
       <div>
         {billData && propNames.map((billData, index) => (<BillDisplay key={index} billData={billData} />))}
       </div>
-      <button onClick={fetchData}></button>
+      <button onClick={fetchData}>{button}</button>
     </div>
   );
 };

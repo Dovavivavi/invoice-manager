@@ -3,8 +3,11 @@ import './LoginFooter.scss'
 
 function LoginFooter() {
   return (
-    <div>LoginFooter</div>
+    <div className='footer-container'>
+      <h1>számlakezelő oldal</h1>
+      <p>lorem ipsum</p>
+    </div>
   )
 }
-//will add fictional data
+
 export default LoginFooter
