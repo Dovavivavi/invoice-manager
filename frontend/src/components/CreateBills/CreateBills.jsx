@@ -37,7 +37,16 @@ function CreateBills() {
     const billRef = doc(db, 'users', `${currUser}`)
   //computed array, to provide different property value
     let billProp = name
-    var obj = [
+    // let response = {
+    //   consname: consumerName,
+    //   name: name,
+    //   issdate: issueDate,
+    //   duedate: dueDate,
+    //   price: price,
+    //   comment: comment
+    // }
+  //arr version
+    let response = [
       consumerName,
       name,
       issueDate,
@@ -48,7 +57,7 @@ function CreateBills() {
     try {
       console.log('done')
       setDoc(billRef, {
-        [billProp]: obj
+        [billProp]: response
       }, { merge: true })
     } catch(error) {
       console.log(error.message)

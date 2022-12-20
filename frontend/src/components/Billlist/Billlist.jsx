@@ -1,4 +1,5 @@
 import React from 'react';
+import BillDisplay from '../BillDisplay/BillDisplay';
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from "react";
@@ -8,6 +9,8 @@ import { auth, db } from '../../firebase-config';
 function Billlist() {
   const [currUser, setCurrUser] = useState('')
   const [billData, setBillData] = useState(null)
+
+//test
 
 //user
   useEffect(() => {
@@ -34,8 +37,10 @@ function Billlist() {
   }
   
   if(billData === null) {console.log('data is not here yet')} else {
-    console.log(billData)
+    console.log('data:', billData)
   }
+
+  const propNames = billData && Object.values(billData)
 
   return (
     <div id='billlist-section'>
@@ -45,7 +50,7 @@ function Billlist() {
         <Link to='/menu'>vissza</Link>
       </div>
       <div>
-        {/* {billData && billData.map(bill => console.log(bill))} */}
+        {billData && propNames.map((billData, index) => (<BillDisplay key={index} billData={billData} />))}
       </div>
       <button onClick={fetchData}></button>
     </div>

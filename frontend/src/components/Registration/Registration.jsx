@@ -11,6 +11,8 @@ function Registration() {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [dispName, setDispName] = useState('');
+  const [dispNameErr, setDispNameErr] = useState('')
+  const [emailErr, setEmailErr] = useState('')
   const navigate = useNavigate();
 
   console.log(registerEmail)
@@ -24,6 +26,7 @@ function Registration() {
       console.log(user)
       console.log('a new user has been created!')
       navigate('/menu')
+      //validation
 
       //adds user based on email to collection
       await setDoc(doc(db, 'users', `${registerEmail}`), {})
@@ -32,8 +35,7 @@ function Registration() {
       console.log(error.message)
     }
   };
-
-
+  
 
   return (
     <>
@@ -43,8 +45,11 @@ function Registration() {
         <div className='form-container'>
           <form className='input-container'>
             <input type='text' placeholder='Név' onChange={(event) => {setDispName(event.target.value)}}/>
+            <p>{dispNameErr}</p>
             <input type='email' id='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
+            <p>{emailErr}</p>
             <input type='password' placeholder='Jelszó' onChange={(event) => {setRegisterPassword(event.target.value)}}/>
+            <p></p>
             <button disabled={!registerEmail + !registerPassword + !dispName} onClick={register}>Regisztráció</button>
           </form>
         </div>

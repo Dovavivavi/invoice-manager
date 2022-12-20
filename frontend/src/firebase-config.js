@@ -20,7 +20,7 @@ export const db = getFirestore()
 export const colRef = collection(db, 'users')
 
 //doc ref
-// export const docRef = doc(db, 'users', `${}`)
+// export const docRef = doc(db, 'users', 'dovahhhsmurf@gmail.com')
 
 //collection data
 getDocs(colRef)
@@ -29,7 +29,6 @@ getDocs(colRef)
     snap.docs.forEach((doc) => {
       users.push({ ...doc.data(), id: doc.id })
     })
-    console.log(users)
   })
   .catch(err => {
     console.log(err.message)
