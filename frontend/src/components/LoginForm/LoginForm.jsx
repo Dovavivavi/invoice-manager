@@ -52,15 +52,16 @@ function LoginForm() {
       <LoginHeader />
       <div id='login-section'>
         <h1>Bejelentkezés</h1>
-        <p>jelenlegi felhasználó: {user.email}</p>
         <div className='login-container'>
-          <input type='text' placeholder='Felhasználónév' onChange={(event) => {setLoginEmail(event.target.value)}}/>
-          <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
-          <ReCAPTCHA ref={recaptchaRef} size='normal' sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' onChange={onChange} />
-          <button disabled={!loginEmail + !loginPassword} onClick={login}>Bejelentkezés</button>
+          <div className='login-form'>
+            <input type='text' placeholder='Felhasználónév' onChange={(event) => {setLoginEmail(event.target.value)}}/>
+            <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
+            {/* <ReCAPTCHA ref={recaptchaRef} size='normal' sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' onChange={onChange} /> */}
+            <button className='login-button' disabled={!loginEmail + !loginPassword} onClick={login}>Bejelentkezés</button>
+          </div>
         </div>
         <div>
-          <Link to='/registration'>Regisztráció</Link>
+          <Link className='registration-link' to='/registration'>Regisztráció</Link>
         </div>
       </div>
     </>

@@ -16,7 +16,7 @@ function CreateBills() {
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [comment, setComment] = useState('')
-  const [err, setErr] = useState('')
+  const [err, setErr] = useState()
 
 //user
   useEffect(() => {
@@ -90,9 +90,8 @@ function CreateBills() {
           <input type='date' placeholder='Kiállítás dátuma' onChange={(event) => {setIssueDate(event.target.value)}}/>
           <input type='date' placeholder='Esedékesség dátuma' onChange={(event) => {setDueDate(event.target.value)}}/>
           <input type='number' placeholder='Ár' onChange={(event) => {setPrice(event.target.value)}} />
-          <input className='comment' type='text' placeholder='Megjegyzés' onChange={(event) => {setComment(event.target.value)}} />
-          <p  className='error-field'>{err}</p>
-          <p></p>
+          <input className='comment' type='text' placeholder='Megjegyzés (opcionális)' onChange={(event) => {setComment(event.target.value)}} />
+          <p  className='error-field'>{err} lorem ipsum</p>
           <button className='save-button' onClick={save}>Mentés</button>
         </form>
       </div>

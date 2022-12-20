@@ -5,7 +5,7 @@ function LoginHeader() {
   return (
     <div className='header-container'>
       <h1>számlakezelő oldal</h1>
-      <p>lorem ipsum</p>
+      <p>Szilágyi Ábel</p>
     </div>
   )
 }

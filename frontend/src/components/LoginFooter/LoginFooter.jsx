@@ -5,7 +5,7 @@ function LoginFooter() {
   return (
     <div className='footer-container'>
       <h1>számlakezelő oldal</h1>
-      <p>lorem ipsum</p>
+      <p>Szilágyi Ábel</p>
     </div>
   )
 }
