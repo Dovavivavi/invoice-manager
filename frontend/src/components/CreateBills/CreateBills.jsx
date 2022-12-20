@@ -84,20 +84,20 @@ function CreateBills() {
     <div id='createbills-section'>
       <h1>Új számla:</h1>
       <div className='creatbills-form-container'>
-        <form>
+        <form className='createbills-form'>
           <input type='text' placeholder='Vásárló neve' onChange={(event) => {setConsumerName(event.target.value)}} />
           <input type='text' placeholder='Tétel neve' onChange={(event) => {setName(event.target.value)}} />
           <input type='date' placeholder='Kiállítás dátuma' onChange={(event) => {setIssueDate(event.target.value)}}/>
           <input type='date' placeholder='Esedékesség dátuma' onChange={(event) => {setDueDate(event.target.value)}}/>
           <input type='number' placeholder='Ár' onChange={(event) => {setPrice(event.target.value)}} />
-          <input type='text' placeholder='Megjegyzés' onChange={(event) => {setComment(event.target.value)}} />
-          <p>{err}</p>
+          <input className='comment' type='text' placeholder='Megjegyzés' onChange={(event) => {setComment(event.target.value)}} />
+          <p  className='error-field'>{err}</p>
           <p></p>
-          <button onClick={save}>Mentés</button>
+          <button className='save-button' onClick={save}>Mentés</button>
         </form>
-        <div>
-          <Link to='/menu'>vissza</Link>
-        </div>
+      </div>
+      <div className='backlink-container'>
+        <Link className='backlink' to='/menu'>vissza</Link>
       </div>
     </div>
   )

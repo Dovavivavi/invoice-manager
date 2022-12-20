@@ -53,17 +53,22 @@ function MainMenu() {
   return (
     <>
       <div className='mainheader-container'>
-        <Link to='/create'>Új számla</Link>
-        <Link to='/list'>Összes számla</Link>
-        <Link to='/check'>Számla megtekintése</Link>
-        <button onClick={logout}>Kijelentkezés</button>
+        <div className='link-container'>
+          <Link className='nav-link' to='/create'>Új számla</Link>
+          <Link className='nav-link' to='/list'>Összes számla</Link>
+          <Link className='nav-link' to='/check'>Számla megtekintése</Link>
+        </div>
+        <div className='button-container'>
+          <button className='logout-button' onClick={logout}>Kijelentkezés</button>
+        </div>
       </div>
-      <div>
-        <h1>{"bejelentkezett felhasználó: " + currUser[0]}</h1>
-        <p>{"email: " + currUser[1]}</p>
-        <p>{time}</p>
-        <p>{"Utolsó bejelentkezés: " + currUser[2]}</p>
-        <h1>{msg}</h1>
+      <div className='mainbody-container'>
+        <div className='data-container'>
+          <h1>{"bejelentkezett felhasználó: " + currUser[0]}</h1>
+          <p>{"email: " + currUser[1]}</p>
+          <p>{time}</p>
+          <p>{"Utolsó bejelentkezés: " + currUser[2]}</p>
+        </div>
       </div>
     </>
   )

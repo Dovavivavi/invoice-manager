@@ -15,15 +15,12 @@ function Registration() {
   const [emailErr, setEmailErr] = useState('')
   const navigate = useNavigate();
 
-  console.log(registerEmail)
-
 //--registration method, then redirects the user--
   const register = async (e) => {
     e.preventDefault();
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       await updateProfile(auth.currentUser, { displayName: dispName }).catch((err) => console.log(err))
-      console.log(user)
       console.log('a new user has been created!')
       navigate('/menu')
       //validation

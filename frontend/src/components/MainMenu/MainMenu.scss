@@ -3,4 +3,73 @@
   height: 100px;
   background-color: black;
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.button-container {
+  background-color: green;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  width: 20%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-right: 50px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nav-link:hover {
+  outline: none;
+  background-color: white;
+  color: black;
+}
+
+.logout-button {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  outline: none;
+  border: 3px solid #B89767;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.mainbody-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-container {
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid grey;
 }
