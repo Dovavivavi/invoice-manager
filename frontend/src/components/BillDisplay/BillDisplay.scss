@@ -1,4 +1,18 @@
 .billdata-chart {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  border: .125rem solid black;
+  padding: .0625rem;
+  margin-bottom: 3px;
+}
+
+.billdata {
+  margin: .3125rem;
+  border: .125rem solid black;
+  padding: 0,.3125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #B89767;
 }

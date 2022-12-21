@@ -5,6 +5,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../../firebase-config';
+import './Billlist.scss'
 
 function Billlist() {
   const [currUser, setCurrUser] = useState('')
@@ -51,13 +52,13 @@ function Billlist() {
 
   return (
     <div id='billlist-section'>
-      <h1>Összes számla:</h1>
-      <div>
-        <Link to='/create'>Új számla</Link>
-        <Link to='/menu'>vissza</Link>
+      <h1>Ön számlái:</h1>
+      <div className='billlist-container'>
+        <Link className='link' to='/create'>Új számla</Link>
+        <button className='show-button' onClick={fetchData}>{button}</button>
+        <Link className='link' to='/menu'>vissza</Link>
       </div>
-      <button onClick={fetchData}>{button}</button>
-      <div>
+      <div className='billldisplay-container'>
         {billData && propNames.map((billData, index) => (<BillDisplay key={index} billData={billData} />))}
       </div>
     </div>
