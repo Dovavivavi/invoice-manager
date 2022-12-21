@@ -22,8 +22,9 @@ function LoginForm() {
 //--sign in method, counts errors and fires captcha--
 
   let errCount = 0
-  const login = async () => {
+  const login = async (e) => {
     try {
+      e.preventDefault()
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
       console.log(user)
       console.log('successful signin!')
@@ -33,7 +34,10 @@ function LoginForm() {
       errCount++;
       if(errCount === 3) {
         console.log("captcha will be here")
-        captchaRender()
+        const token = recaptchaRef.current.getValue();
+        recaptchaRef.current.reset()
+
+        console.log(token)
       }
     }
   }
@@ -53,12 +57,13 @@ function LoginForm() {
       <div id='login-section'>
         <h1>Bejelentkezés</h1>
         <div className='login-container'>
-          <div className='login-form'>
+          <form className='login-form'>
             <input type='text' placeholder='Felhasználónév' onChange={(event) => {setLoginEmail(event.target.value)}}/>
             <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
             {/* <ReCAPTCHA ref={recaptchaRef} size='normal' sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' onChange={onChange} /> */}
+            <ReCAPTCHA ref={recaptchaRef} sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' />
             <button className='login-button' disabled={!loginEmail + !loginPassword} onClick={login}>Bejelentkezés</button>
-          </div>
+          </form>
         </div>
         <div>
           <Link className='registration-link' to='/registration'>Regisztráció</Link>
