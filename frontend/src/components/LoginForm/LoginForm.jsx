@@ -4,7 +4,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase-config'
 import { useNavigate } from 'react-router-dom'
 import './LoginForm.scss'
@@ -12,7 +12,6 @@ import './LoginForm.scss'
 function LoginForm() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  const [user, setUser] = useState({});
   const [captchaToggled, setCaptchaToggled] = useState(false)
   const [buttonState, setButtonState] = useState(true)
   const navigate = useNavigate()

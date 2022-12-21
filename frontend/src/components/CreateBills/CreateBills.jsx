@@ -16,7 +16,8 @@ function CreateBills() {
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [comment, setComment] = useState('')
-  const [err, setErr] = useState()
+  const [err, setErr] = useState('')
+  const [success, setSuccess] = useState('')
 
 //user
   useEffect(() => {
@@ -30,6 +31,12 @@ function CreateBills() {
       }
     })
   }, [])
+
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false)
+    }, "1000")
+  }
 
 // saving data
   const save = async (e) => {
@@ -59,15 +66,18 @@ function CreateBills() {
     if (consumerName !== '' && name !== '' && issueDate != null && dueDate != null && price !== '') {
       try {
         console.log('done')
-        setErr('sikeres számlalétrehozás')
+        setErr('')
+        setSuccess('sikeres számlalétrehozás')
         setDoc(billRef, {
           [billProp]: response
         }, { merge: true })
+        refreshPage()
       } catch(error) {
         console.log(error.message)
       }
     } else {
       setErr('töltsd ki az összes mezőt!')
+      setSuccess('')
     }
 
     // try {
@@ -91,7 +101,8 @@ function CreateBills() {
           <input type='date' placeholder='Esedékesség dátuma' onChange={(event) => {setDueDate(event.target.value)}}/>
           <input type='number' placeholder='Ár' onChange={(event) => {setPrice(event.target.value)}} />
           <input className='comment' type='text' placeholder='Megjegyzés (opcionális)' onChange={(event) => {setComment(event.target.value)}} />
-          <p  className='error-field'>{err}</p>
+          {err && <p className='error-field'>{err}</p>}
+          {success && <p className='success-field'>{success}</p>}
           <button className='save-button' onClick={save}>Mentés</button>
         </form>
       </div>

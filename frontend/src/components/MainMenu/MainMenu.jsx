@@ -65,9 +65,9 @@ function MainMenu() {
       <div className='mainbody-container'>
         <div className='data-container'>
           <h1>{"bejelentkezett felhasználó: " + currUser[0]}</h1>
-          <p>{"email: " + currUser[1]}</p>
-          <p>{time}</p>
-          <p>{"Utolsó bejelentkezés: " + currUser[2]}</p>
+          <p>{"felhasználónév (email): " + currUser[1]}</p>
+          <p>idő: {time}</p>
+          <p>{"utolsó bejelentkezés: " + currUser[2]}</p>
         </div>
       </div>
     </>
