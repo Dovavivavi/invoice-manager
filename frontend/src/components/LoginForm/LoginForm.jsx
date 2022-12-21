@@ -1,6 +1,7 @@
 import React from 'react'
 import LoginHeader from '../LoginHeader/LoginHeader'
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from 'react-google-recaptcha';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
@@ -9,15 +10,20 @@ import { useNavigate } from 'react-router-dom'
 import './LoginForm.scss'
 
 function LoginForm() {
-  const recaptchaRef = React.useRef(null);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [user, setUser] = useState({});
+  const [captchaToggled, setCaptchaToggled] = useState(false)
+  const [buttonState, setButtonState] = useState(true)
   const navigate = useNavigate()
 
-  // onAuthStateChanged(auth, (currentUser) => {
-  //   setUser(currentUser)
-  // })
+  // const script = document.createElement("script");
+  // script.src = "https://www.google.com/recaptcha/api.js";
+  // script.async = true;
+  // script.defer = true;
+  // document.body.appendChild(script);
+
+  const reCaptchaRef = useRef();
 
 //--sign in method, counts errors and fires captcha--
 
@@ -32,23 +38,28 @@ function LoginForm() {
     } catch (error) {
       console.log(error.message)
       errCount++;
-      if(errCount === 3) {
+      if(errCount === 4) {
         console.log("captcha will be here")
-        const token = recaptchaRef.current.getValue();
-        recaptchaRef.current.reset()
-
-        console.log(token)
+        // window.grecaptcha.render('recaptcha', {
+        //   sitekey: '6Lfj55YjAAAAAGOO66ROWSeX6MgzHAmURknd2UV7',
+        //   size: 'invisible',
+        //   callback: onCaptchaCompleted()
+        // })
+        setCaptchaToggled(true)
+        setButtonState(false)
       }
     }
   }
-// captcha
-  const captchaRender = () => {
-    // recaptchaRef.current.execute()
+
+  function refreshPage() {
+    window.location.reload(false);
   }
 
-  const onChange = () => {
-    console.log("captcha done")
-    navigate('/')
+// captcha
+  const handleChange = (value) => {
+    console.log(value)
+    setButtonState(true)
+    refreshPage()
   }
 
   return (
@@ -57,12 +68,13 @@ function LoginForm() {
       <div id='login-section'>
         <h1>Bejelentkezés</h1>
         <div className='login-container'>
-          <form className='login-form'>
+          <form action='/regi' method='POST' className='login-form'>
             <input type='text' placeholder='Felhasználónév' onChange={(event) => {setLoginEmail(event.target.value)}}/>
             <input type='password' placeholder='Jelszó' onChange={(event) => {setLoginPassword(event.target.value)}}/>
-            {/* <ReCAPTCHA ref={recaptchaRef} size='normal' sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' onChange={onChange} /> */}
-            <ReCAPTCHA ref={recaptchaRef} sitekey='6LfitIUjAAAAAHjtESoKe7e5BG6QtYNYGwngRFzE' />
-            <button className='login-button' disabled={!loginEmail + !loginPassword} onClick={login}>Bejelentkezés</button>
+            <button className='login-button' disabled={!loginEmail + !loginPassword + !buttonState} onClick={login}>Bejelentkezés</button>
+            <div id='recaptcha'>
+              {captchaToggled && <ReCAPTCHA sitekey='6Lfj55YjAAAAAGOO66ROWSeX6MgzHAmURknd2UV7' size='compact' ref={reCaptchaRef} onChange={handleChange}/>}
+            </div>
           </form>
         </div>
         <div>
