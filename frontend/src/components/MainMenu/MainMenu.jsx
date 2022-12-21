@@ -1,53 +1,47 @@
-import React from 'react'
-import { signOut } from 'firebase/auth'
-import { Link, useNavigate } from 'react-router-dom'
-import { auth } from '../../firebase-config'
-import { useContext } from 'react'
-import './MainMenu.scss'
-import { UserContext } from '../../Contexts'
-import { onAuthStateChanged } from 'firebase/auth'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase-config';
+import { onAuthStateChanged } from 'firebase/auth';
+import './MainMenu.scss';
 
 function MainMenu() { 
-  const [currUser, setCurrUser] = useState([])
-
-// context test
-  const msg = useContext(UserContext)
+  const [currUser, setCurrUser] = useState([]);
+  const navigate = useNavigate();
 
 //--logout method--
-  const navigate = useNavigate()
-
   const logout = async () => {
     try {
-      await signOut(auth)
-      console.log('succesful signout!')
-      navigate('/')
+      await signOut(auth);
+      console.log('succesful signout!');
+      navigate('/');
     } catch(error) {
-      console.log(error.message)
-    }
-  }
+      console.log(error.message);
+    };
+  };
 
 //--gettime method--
   const current = new Date();
-  const time = current.toLocaleTimeString('hu-HU')
+  const time = current.toLocaleTimeString('hu-HU');
 
 //--user data--
   useEffect(() => {
-    // const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in: puts the neccesary data into an array
-        let dataArr = []
-        dataArr.push(user.displayName, user.email, user.metadata.lastSignInTime)
-        setCurrUser(dataArr)
+      // User is signed in: puts the neccesary data into an array
+        let dataArr = [];
+        dataArr.push(user.displayName, user.email, user.metadata.lastSignInTime);
+        setCurrUser(dataArr);
         // ...
       } else {
         // User is signed out
         // ...
-      }
+      };
     });
-  }, [])
+  }, []);
+  
   currUser && console.log(currUser[0])
 
   return (
@@ -71,7 +65,7 @@ function MainMenu() {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default MainMenu
+export default MainMenu;

@@ -1,18 +1,18 @@
-import React from 'react'
-import LoginHeader from '../LoginHeader/LoginHeader'
-import './Registration.scss'
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { auth, db } from '../../firebase-config'
-import { doc, setDoc } from 'firebase/firestore'
+import React from 'react';
+import LoginHeader from '../LoginHeader/LoginHeader';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth, db } from '../../firebase-config';
+import { doc, setDoc } from 'firebase/firestore';
+import './Registration.scss';
 
 function Registration() {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [dispName, setDispName] = useState('');
-  const [dispNameErr, setDispNameErr] = useState('')
-  const [emailErr, setEmailErr] = useState('')
+  const [dispNameErr, setDispNameErr] = useState('');
+  const [emailErr, setEmailErr] = useState('');
   const navigate = useNavigate();
 
 //--registration method, then redirects the user--
@@ -20,16 +20,15 @@ function Registration() {
     e.preventDefault();
     try {
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      await updateProfile(auth.currentUser, { displayName: dispName }).catch((err) => console.log(err))
-      console.log('a new user has been created!')
-      navigate('/menu')
-      //validation
+      await updateProfile(auth.currentUser, { displayName: dispName }).catch((err) => console.log(err));
+      console.log('a new user has been created!');
+      navigate('/menu');
+    //validation
 
-      //adds user based on email to collection
-      await setDoc(doc(db, 'users', `${registerEmail}`), {})
-      
+    //adds user based on email to collection
+      await setDoc(doc(db, 'users', `${registerEmail}`), {});
     } catch(error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   };
   
@@ -55,7 +54,7 @@ function Registration() {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Registration
+export default Registration;

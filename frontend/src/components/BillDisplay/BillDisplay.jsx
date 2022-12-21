@@ -1,5 +1,5 @@
-import React from 'react'
-import './BillDisplay.scss'
+import React from 'react';
+import './BillDisplay.scss';
 
 function BillDisplay({ billData }) {
 
@@ -12,7 +12,7 @@ function BillDisplay({ billData }) {
       <p className='billdata'>ár: {billData[4]}</p>
       <p className='billdata'>megjegyzés: {billData[5]}</p>
     </div>
-  )
-}
+  );
+};
 
-export default BillDisplay
+export default BillDisplay;

@@ -1,52 +1,51 @@
 import React from 'react';
 import BillDisplay from '../BillDisplay/BillDisplay';
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
-import { useEffect, useState } from "react";
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../../firebase-config';
-import './Billlist.scss'
+import './Billlist.scss';
 
 function Billlist() {
-  const [currUser, setCurrUser] = useState('')
-  const [billData, setBillData] = useState(null)
-  const [button, setButton] = useState('mutasd')
+  const [currUser, setCurrUser] = useState('');
+  const [billData, setBillData] = useState(null);
+  const [button, setButton] = useState('mutasd');
 
-//test
-
-//user
+//--user--
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        let mail = ''
-        mail = user.email
-        setCurrUser(mail)
+        let mail = '';
+        mail = user.email;
+        setCurrUser(mail);
       } else {
-        //no user
-      }
-    })
-  }, [])  
+        // no user
+      };
+    });
+  }, []); 
 
+//--bill data fetch--
   let fetchData = async function() {
-    const billRef = doc(db, 'users', `${currUser}`)
-    const docSnap = await getDoc(billRef)
+    const billRef = doc(db, 'users', `${currUser}`);
+    const docSnap = await getDoc(billRef);
 
     if(docSnap.exists()) {
-      setBillData(docSnap.data())
-      setButton('vissza')
+      setButton('vissza');
+      setBillData(docSnap.data());
     } else {
-      console.log('no such document!')
-    }
+      console.log('no such document!');
+    };
 
     if(billData !== null) {
-      setBillData(null)
-      setButton('mutasd')
-    }
-  }
+      setBillData(null);
+      setButton('mutasd');
+    };
+  };
   
   if(billData === null) {console.log('data is not here yet')} else {
-    console.log('data:', billData)
-  }
+    console.log('data:', billData);
+  };
 
   const propNames = billData && Object.values(billData)
 

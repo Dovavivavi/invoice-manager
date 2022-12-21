@@ -1,5 +1,5 @@
-import React from 'react'
-import './LoginHeader.scss'
+import React from 'react';
+import './LoginHeader.scss';
 
 function LoginHeader() {
   return (
@@ -7,7 +7,7 @@ function LoginHeader() {
       <h1>számlakezelő oldal</h1>
       <p>Szilágyi Ábel</p>
     </div>
-  )
-}
+  );
+};
 
-export default LoginHeader
+export default LoginHeader;

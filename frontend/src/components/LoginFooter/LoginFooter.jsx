@@ -1,5 +1,5 @@
-import React from 'react'
-import './LoginFooter.scss'
+import React from 'react';
+import './LoginFooter.scss';
 
 function LoginFooter() {
   return (
@@ -7,7 +7,7 @@ function LoginFooter() {
       <h1>számlakezelő oldal</h1>
       <p>Szilágyi Ábel</p>
     </div>
-  )
-}
+  );
+};
 
-export default LoginFooter
+export default LoginFooter;

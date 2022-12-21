@@ -1,6 +1,6 @@
-import React from 'react'
-import './CheckBills.scss'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './CheckBills.scss';
 
 function CheckBills() {
   return (
@@ -10,7 +10,7 @@ function CheckBills() {
         <Link to='/menu'>vissza</Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckBills
+export default CheckBills;

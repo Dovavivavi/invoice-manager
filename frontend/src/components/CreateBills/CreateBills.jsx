@@ -1,59 +1,50 @@
 import React from 'react'
-import './CreateBills.scss'
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 import { auth } from '../../firebase-config';
-import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
+import './CreateBills.scss';
 
 
 function CreateBills() {
-  const [currUser, setCurrUser] = useState('')
-  const [consumerName, setConsumerName] = useState('')
-  const [issueDate, setIssueDate] = useState(null)
-  const [dueDate, setDueDate] = useState(null)
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
-  const [comment, setComment] = useState('')
-  const [err, setErr] = useState('')
-  const [success, setSuccess] = useState('')
+  const [currUser, setCurrUser] = useState('');
+  const [consumerName, setConsumerName] = useState('');
+  const [name, setName] = useState('');
+  const [issueDate, setIssueDate] = useState(null);
+  const [dueDate, setDueDate] = useState(null);
+  const [price, setPrice] = useState('');
+  const [comment, setComment] = useState('');
+  const [err, setErr] = useState('');
+  const [success, setSuccess] = useState('');
 
-//user
+//--user--
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        let mail = ''
-        mail = user.email
-        setCurrUser(mail)
+        let mail = '';
+        mail = user.email;
+        setCurrUser(mail);
       } else {
         //no user
-      }
-    })
+      };
+    });
   }, [])
 
   function refreshPage() {
     setTimeout(() => {
       window.location.reload(false)
-    }, "1000")
+    }, "1000");
   }
 
-// saving data
+//--saving data--
   const save = async (e) => {
     e.preventDefault();
   // billref had to wait for state update
-    const billRef = doc(db, 'users', `${currUser}`)
-  //computed array, to provide different property value
-    let billProp = name
-    // let response = {
-    //   consname: consumerName,
-    //   name: name,
-    //   issdate: issueDate,
-    //   duedate: dueDate,
-    //   price: price,
-    //   comment: comment
-    // }
-  //arr version
+    const billRef = doc(db, 'users', `${currUser}`);
+  // computed array, to provide different property value
+    let billProp = name;
     let response = [
       consumerName,
       name,
@@ -61,33 +52,24 @@ function CreateBills() {
       dueDate,
       price,
       comment
-    ]
+    ];
 
     if (consumerName !== '' && name !== '' && issueDate != null && dueDate != null && price !== '') {
       try {
-        console.log('done')
-        setErr('')
-        setSuccess('sikeres számlalétrehozás')
+        console.log('done');
+        setErr('');
+        setSuccess('sikeres számlalétrehozás');
         setDoc(billRef, {
           [billProp]: response
-        }, { merge: true })
-        refreshPage()
+        }, { merge: true });
+        refreshPage();
       } catch(error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     } else {
-      setErr('töltsd ki az összes mezőt!')
-      setSuccess('')
+      setErr('töltsd ki az összes mezőt!');
+      setSuccess('');
     }
-
-    // try {
-    //   console.log('done')
-    //   setDoc(billRef, {
-    //     [billProp]: response
-    //   }, { merge: true })
-    // } catch(error) {
-    //   console.log(error.message)
-    // }
   }
 
   return (
@@ -110,7 +92,7 @@ function CreateBills() {
         <Link className='backlink' to='/menu'>vissza</Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreateBills
+export default CreateBills;
