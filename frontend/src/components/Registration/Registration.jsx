@@ -11,28 +11,33 @@ function Registration() {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [dispName, setDispName] = useState('');
-  const [dispNameErr, setDispNameErr] = useState('');
-  const [emailErr, setEmailErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
   const navigate = useNavigate();
 
 //--registration method, then redirects the user--
   const register = async (e) => {
     e.preventDefault();
-    try {
-      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      await updateProfile(auth.currentUser, { displayName: dispName }).catch((err) => console.log(err));
-      console.log('a new user has been created!');
-      navigate('/menu');
-    //validation
-
-    //adds user based on email to collection
-      await setDoc(doc(db, 'users', `${registerEmail}`), {});
-    } catch(error) {
-      console.log(error.message);
-    }
+  //validation
+    const pass3Regex = /[0-9]/g
+    if(pass3Regex.test(registerPassword)) {
+      try {
+        await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+        await updateProfile(auth.currentUser, { displayName: dispName }).catch((err) => console.log(err));
+        console.log('a new user has been created!');
+        navigate('/menu');
+  
+      //adds user based on email to collection
+        await setDoc(doc(db, 'users', `${registerEmail}`), {});
+      } catch(error) {
+        console.log(error.message);
+      }
+    } else {
+      console.log('passwordError');
+      navigate('/registration');
+      setPasswordErr('taralmaznia kell számot');
+    };
   };
   
-
   return (
     <>
       <LoginHeader />
@@ -41,11 +46,9 @@ function Registration() {
         <div className='form-container'>
           <form className='registration-form'>
             <input type='text' placeholder='Név' onChange={(event) => {setDispName(event.target.value)}}/>
-            <p>{dispNameErr}</p>
             <input type='email' id='email' placeholder='Felhasználónév' onChange={(event) => {setRegisterEmail(event.target.value)}}/>
-            <p>{emailErr}</p>
             <input type='password' placeholder='Jelszó' onChange={(event) => {setRegisterPassword(event.target.value)}}/>
-            <p></p>
+            {passwordErr && <p className='password-err'>{passwordErr}</p>}
             <button className='register-button' disabled={!registerEmail + !registerPassword + !dispName} onClick={register}>Regisztráció</button>
           </form>
         </div>

@@ -43,9 +43,9 @@ function Billlist() {
     };
   };
   
-  if(billData === null) {console.log('data is not here yet')} else {
-    console.log('data:', billData);
-  };
+  // if(billData === null) {console.log('data is not here yet')} else {
+  //   console.log('data:', billData);
+  // };
 
   const propNames = billData && Object.values(billData)
 

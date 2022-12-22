@@ -50,7 +50,6 @@ function MainMenu() {
         <div className='link-container'>
           <Link className='nav-link' to='/create'>Új számla</Link>
           <Link className='nav-link' to='/list'>Összes számla</Link>
-          <Link className='nav-link' to='/check'>Számla megtekintése</Link>
         </div>
         <div className='button-container'>
           <button className='logout-button' onClick={logout}>Kijelentkezés</button>

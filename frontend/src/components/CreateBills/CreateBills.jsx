@@ -77,11 +77,17 @@ function CreateBills() {
       <h1>Új számla:</h1>
       <div className='creatbills-form-container'>
         <form className='createbills-form'>
-          <input type='text' placeholder='Vásárló neve' onChange={(event) => {setConsumerName(event.target.value)}} />
-          <input type='text' placeholder='Tétel neve' onChange={(event) => {setName(event.target.value)}} />
-          <input type='date' placeholder='Kiállítás dátuma' onChange={(event) => {setIssueDate(event.target.value)}}/>
-          <input type='date' placeholder='Esedékesség dátuma' onChange={(event) => {setDueDate(event.target.value)}}/>
-          <input type='number' placeholder='Ár' onChange={(event) => {setPrice(event.target.value)}} />
+          <label htmlFor="consumer">Vásárló:</label>
+          <input className='consumer' type='text' placeholder='Vásárló neve' onChange={(event) => {setConsumerName(event.target.value)}}/>
+          <label htmlFor='item'>Tétel:</label>
+          <input className='item' type='text' placeholder='Tétel neve' onChange={(event) => {setName(event.target.value)}}/>
+          <label htmlFor="issue-d">Kiállítási dátum:</label>
+          <input className='issue-d' type='date' placeholder='Kiállítás dátuma' onChange={(event) => {setIssueDate(event.target.value)}}/>
+          <label htmlFor="due-d">Esedékes:</label>
+          <input className='due-d' type='date' placeholder='Esedékesség dátuma' onChange={(event) => {setDueDate(event.target.value)}}/>
+          <label htmlFor="price">Ár:</label>
+          <input className='price' type='number' placeholder='Ár' onChange={(event) => {setPrice(event.target.value)}} />
+          <label htmlFor="comment">Megjegyzés:</label>
           <input className='comment' type='text' placeholder='Megjegyzés (opcionális)' onChange={(event) => {setComment(event.target.value)}} />
           {err && <p className='error-field'>{err}</p>}
           {success && <p className='success-field'>{success}</p>}

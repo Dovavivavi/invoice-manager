@@ -35,7 +35,7 @@ function LoginForm() {
       console.log(error.message);
       setErr('hibás adatok');
       errCount++;
-      if(errCount === 4) {
+      if(errCount === 3) {
         console.log("captcha will be here");
         setCaptchaToggled(true);
         setButtonState(false);
